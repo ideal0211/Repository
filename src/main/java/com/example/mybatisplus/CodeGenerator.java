@@ -19,7 +19,7 @@ public class CodeGenerator {
     private final static String projectPath = System.getProperty("user.dir");
 
     private final static String url = "jdbc:mysql://106.15.51.67:3306/db_album?useUnicode=true&useSSL=false&characterEncoding=utf8";
-    private final static String driverName = "com.mysql.jdbc.Driver";
+    private final static String driverName = "com.mysql.cj.jdbc.Driver";
     private final static String userName = "root";
     private final static String pwd = "qiangzi1986";
 
