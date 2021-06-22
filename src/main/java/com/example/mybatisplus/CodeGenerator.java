@@ -18,10 +18,10 @@ public class CodeGenerator {
     //项目根目录
     private final static String projectPath = System.getProperty("user.dir");
 
-    private final static String url = "jdbc:mysql://106.15.51.67:3306/db_album?useUnicode=true&useSSL=false&characterEncoding=utf8";
+    private final static String url = "jdbc:mysql://192.168.0.84:3306/fyt_exam_result?useUnicode=true&useSSL=false&characterEncoding=utf8";
     private final static String driverName = "com.mysql.cj.jdbc.Driver";
     private final static String userName = "root";
-    private final static String pwd = "qiangzi1986";
+    private final static String pwd = "kpkj@2021";
 
     //去掉表前缀再生成实体类
     private final static String prefix = "t_";
@@ -62,7 +62,7 @@ public class CodeGenerator {
                 .setRestControllerStyle(true)   // 生成 @RestController 控制器
                 .setEntityTableFieldAnnotationEnable(true)  // 是否生成实体时，生成字段注解 默认false;
                 .setControllerMappingHyphenStyle(true)  // 驼峰转连字符
-                .setExclude(tables) // 需要包含的表名，允许正则表达式,不设置表示当前db下所有表
+                .setInclude(tables) // 需要包含的表名，允许正则表达式,不设置表示当前db下所有表
                 .setTablePrefix(prefix); // 去掉表前缀再生成实体类
 
         // 配置代码生成器
@@ -74,7 +74,7 @@ public class CodeGenerator {
                         .setUsername(userName)
                         .setPassword(pwd))
                 .setPackageInfo(new PackageConfig().setParent(basePackage))
-                //关闭默认生成xml,关闭Controller生成
+                //关闭默认生成xml,关闭Controller生成,关闭service生成 .setService(null).setServiceImpl(null)
                 .setTemplate(new TemplateConfig().setXml(null).setController(null))
                 //指定生成的模板引擎
                 .setTemplateEngine(new VelocityTemplateEngine())
