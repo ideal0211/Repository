@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MybatisPlusApplicationTests {
+class MybatisPlusAppTests {
 
     @Test
-    void test1() {
+    public void test1() {
 
     }
 
