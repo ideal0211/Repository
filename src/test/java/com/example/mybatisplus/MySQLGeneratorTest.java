@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import org.apache.ibatis.jdbc.ScriptRunner;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -26,13 +27,14 @@ public class MySQLGeneratorTest {
      */
     private static final DataSourceConfig.Builder DATA_SOURCE_CONFIG = new DataSourceConfig.Builder(URL, USERNAME, PASSWORD);
 
-//    @BeforeAll
+    @BeforeAll
     public static void before(){
         /**1.执行数据库脚本*/
         initDataSource(DATA_SOURCE_CONFIG.build());
+        System.out.println("MySQLGeneratorTest.before");
     }
     @Test
-    public void autoGenerate() {
+    public void execute() {
         //先得到当前工程目录
         String projectDir = System.getProperty("user.dir");
         String outputPath = projectDir + "/src/main/java";
@@ -61,7 +63,7 @@ public class MySQLGeneratorTest {
                 .strategyConfig(builder -> builder
 //                        .addInclude("t_commodity")
                         .addTablePrefix("t_")
-                        .controllerBuilder().disable()
+                        .controllerBuilder().enableFileOverride().disable()
                         .entityBuilder().idType(IdType.ASSIGN_ID).enableFileOverride().enableLombok().enableTableFieldAnnotation()
                         .mapperBuilder().enableFileOverride()
                         .serviceBuilder().enableFileOverride())
