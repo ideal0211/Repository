@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import org.apache.ibatis.jdbc.ScriptRunner;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -27,7 +26,7 @@ public class MySQLGeneratorTest {
      */
     private static final DataSourceConfig.Builder DATA_SOURCE_CONFIG = new DataSourceConfig.Builder(URL, USERNAME, PASSWORD);
 
-    @BeforeAll
+//    @BeforeAll
     public static void before(){
         /**1.执行数据库脚本*/
         initDataSource(DATA_SOURCE_CONFIG.build());
@@ -61,10 +60,12 @@ public class MySQLGeneratorTest {
                         .pathInfo(pathInfo))
                 //策略配置
                 .strategyConfig(builder -> builder
+                        //指定表（不设表示所有）
 //                        .addInclude("t_commodity")
+                        //过滤表前缀
                         .addTablePrefix("t_")
                         .controllerBuilder().enableFileOverride().disable()
-                        .entityBuilder().idType(IdType.ASSIGN_ID).enableFileOverride().enableLombok().enableTableFieldAnnotation()
+                        .entityBuilder().idType(IdType.ASSIGN_ID).formatFileName("%sEntity").enableFileOverride().enableLombok().enableTableFieldAnnotation()
                         .mapperBuilder().enableFileOverride()
                         .serviceBuilder().enableFileOverride())
                 //模板配置，默认：VelocityTemplateEngine
